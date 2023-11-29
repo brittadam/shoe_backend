@@ -18,6 +18,12 @@ console.log(process.env.MONGODB);
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 
+// import routes
+const shoeRouter = require("./routes/api/v1/shoes");
+
+// use routes
+app.use("/api/v1/shoes", shoeRouter);
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
 });
