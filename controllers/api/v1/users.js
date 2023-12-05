@@ -31,4 +31,17 @@ const create = async (req, res) => {
     });
 }
 
+//add put to change password of user
+const update = async (req, res) => {
+    let user = await User.findById(req.params.id);
+    user.password = req.body.password;
+    await user.save();
+    res.json({
+        status: "success",
+        message: "user updated successfully",
+        data: user
+    });
+}
+
 module.exports.create = create;
+module.exports.update = update;
