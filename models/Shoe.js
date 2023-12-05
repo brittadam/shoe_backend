@@ -3,11 +3,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const ShoeSchema = new Schema({
-    //add id to shoe
-    id: {
-        type: Number,
-        required: false,
-    },
     //add username to shoe
     user: {
         type: String,
