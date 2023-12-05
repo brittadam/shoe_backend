@@ -23,9 +23,11 @@ db.on("error", console.error.bind(console, "connection error:"));
 
 // import routes
 const shoeRouter = require("./routes/api/v1/shoes");
+const userRouter = require("./routes/api/v1/users");
 
 // use routes
 app.use("/api/v1/shoes", shoeRouter);
+app.use("/api/v1/users", userRouter);
 
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);
