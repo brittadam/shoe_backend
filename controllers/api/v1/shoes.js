@@ -3,18 +3,21 @@ const Shoe = require("../../../models/Shoe");
 
 //make post request to create a shoe
 const create = async (req, res) => {
-    let laces = "laceable";
-    let outside_1 = "red";
-    let outside_2 = "green";
-    let sole_bottom = "purple";
-    let sole_top = "black";
-    let status = "ordered";
-    let user = "jan";
-    let size = 10;
-    let price = 100;
-    let id = 1;
-
+    console.log(req.body);
+    console.log(req.body.laces);
+    
     let s = new Shoe();
+    let laces = req.body.laces;
+    let outside_1 = req.body.outside_1;
+    let outside_2 = req.body.outside_2;
+    let sole_bottom = req.body.sole_bottom;
+    let sole_top = req.body.sole_top;
+    let status = req.body.status;
+    let user = req.body.user;
+    let size = req.body.size;
+    let price = req.body.price;
+
+
     s.laces = laces;
     s.outside_1 = outside_1;
     s.outside_2 = outside_2;
@@ -24,7 +27,7 @@ const create = async (req, res) => {
     s.user = user;
     s.size = size;
     s.price = price;
-    s.id = id;
+
 
     await s.save();
     res.json({
@@ -39,9 +42,18 @@ const create = async (req, res) => {
             user: s.user,
             size: s.size,
             price: s.price,
-            id: s.id,
         }]
     });
 }
 
+const get = async (req, res) => {
+    let shoes = await Shoe.find();
+    res.json({
+        status: "success",
+        message: "shoes retrieved successfully",
+        data: shoes
+    });
+}
+
 module.exports.create = create;
+module.exports.get = get;

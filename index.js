@@ -8,6 +8,9 @@ const port = 3000;
 const cors = require('cors');
 app.use(cors());
 
+//use express json
+app.use(express.json());
+
 // connect to mongodb
 mongoose.connect(process.env.MONGODB);
 

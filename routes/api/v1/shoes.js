@@ -7,5 +7,6 @@ const router = express.Router();
 const createShoe = require("../../../controllers/api/v1/shoes");
 
 router.post("/", createShoe.create);
+router.get("/", createShoe.get);
 
 module.exports = router;
