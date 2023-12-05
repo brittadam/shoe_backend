@@ -76,9 +76,31 @@ const remove = async (req, res) => {
     });
 }
 
+//put request to update a shoe
+const update = async (req, res) => {
+    let id = req.params.id;
+    let s = await Shoe.findById(id);
+    s.laces = req.body.laces;
+    s.outside_1 = req.body.outside_1;
+    s.outside_2 = req.body.outside_2;
+    s.sole_bottom = req.body.sole_bottom;
+    s.sole_top = req.body.sole_top;
+    s.status = req.body.status;
+    s.user = req.body.user;
+    s.size = req.body.size;
+    s.price = req.body.price;
+    await s.save();
+    res.json({
+        status: "success",
+        message: "shoe updated successfully",
+        data: s
+    });
+}
+
 
 module.exports.create = create;
 module.exports.get = get;
 module.exports.remove = remove;
 module.exports.getById = getById;
+module.exports.update = update;
 
