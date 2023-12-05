@@ -54,6 +54,16 @@ const get = async (req, res) => {
         data: shoes
     });
 }
+//get by id
+const getById = async (req, res) => {
+    let shoe = await Shoe.findById(req.params.id);
+    res.json({
+        status: "success",
+        message: "shoe retrieved successfully",
+        data: shoe
+    });
+}
+
 
 //delete a shoe by id
 const remove = async (req, res) => {
@@ -70,3 +80,5 @@ const remove = async (req, res) => {
 module.exports.create = create;
 module.exports.get = get;
 module.exports.remove = remove;
+module.exports.getById = getById;
+
