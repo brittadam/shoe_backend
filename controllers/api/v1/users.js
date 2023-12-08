@@ -1,5 +1,7 @@
 //require user model
 const User = require("../../../models/User");
+const bcrypt = require('bcrypt');
+const salt = 12; 
 
 //make post request to create a user
 const create = async (req, res) => {
@@ -17,6 +19,10 @@ const create = async (req, res) => {
     u.password = password;
     u.email = email;
     u.admin = admin;
+
+    //hash password
+    u.password = await bcrypt.hash(password, salt);
+   
 
     await u.save();
     res.json({
