@@ -41,6 +41,10 @@ const create = async (req, res) => {
 const update = async (req, res) => {
     let user = await User.findById(req.params.id);
     user.password = req.body.password;
+
+    //hash password
+    user.password = await bcrypt.hash(user.password, salt);
+    
     await user.save();
     res.json({
         status: "success",
