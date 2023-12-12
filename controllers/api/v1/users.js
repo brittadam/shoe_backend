@@ -55,7 +55,8 @@ const update = async (req, res) => {
 }
 //make login post request
 const login = async (req, res) => {
-    let user = await User.findOne({username: req.body.username});
+    let user = await User.findOne({email: req.body.email});
+    console.log(req.body.email);
     if(user){
         let match = await bcrypt.compare(req.body.password, user.password);
         if(match){
