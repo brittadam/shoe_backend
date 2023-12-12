@@ -9,5 +9,7 @@ const createUser = require("../../../controllers/api/v1/users");
 router.post("/", createUser.create);
 //add put to change password of user
 router.put("/:id", createUser.update);
+//make login post request
+router.post("/login", createUser.login);
 
 module.exports = router;
