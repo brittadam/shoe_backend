@@ -38,6 +38,16 @@ const ShoeSchema = new Schema({
         type: String,
         required: false,
     },
+    //add outside_3
+    outside_3: {
+        type: String,
+        required: false,
+    },
+    //add inside
+    inside: {
+        type: String,
+        required: false,
+    },
     //add sole_bottom
     sole_bottom: {
         type: String,

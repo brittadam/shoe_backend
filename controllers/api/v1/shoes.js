@@ -10,6 +10,8 @@ const create = async (req, res) => {
     let laces = req.body.laces;
     let outside_1 = req.body.outside_1;
     let outside_2 = req.body.outside_2;
+    let outside_3 = req.body.outside_3;
+    let inside = req.body.inside;
     let sole_bottom = req.body.sole_bottom;
     let sole_top = req.body.sole_top;
     let status = req.body.status;
@@ -21,6 +23,8 @@ const create = async (req, res) => {
     s.laces = laces;
     s.outside_1 = outside_1;
     s.outside_2 = outside_2;
+    s.outside_3 = outside_3;
+    s.inside = inside;
     s.sole_bottom = sole_bottom;
     s.sole_top = sole_top;
     s.status = status;
@@ -37,6 +41,8 @@ const create = async (req, res) => {
             laces: s.laces,
             outside_1: s.outside_1,
             outside_2: s.outside_2,
+            outside_3: s.outside_3,
+            inside: s.inside,
             sole_bottom: s.sole_bottom,
             sole_top: s.sole_top,
             user: s.user,
