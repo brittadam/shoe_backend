@@ -7,26 +7,44 @@ const create = async (req, res) => {
     console.log(req.body.laces);
     
     let s = new Shoe();
-    let laces = req.body.laces;
-    let outside_1 = req.body.outside_1;
-    let outside_2 = req.body.outside_2;
-    let outside_3 = req.body.outside_3;
-    let inside = req.body.inside;
-    let sole_bottom = req.body.sole_bottom;
-    let sole_top = req.body.sole_top;
+    let laces_color = req.body.laces_color;
+    let outside_1_color = req.body.outside_1_color;
+    let outside_2_color = req.body.outside_2_color;
+    let outside_3_color = req.body.outside_3_color;
+    let inside_color = req.body.inside_color;
+    let sole_bottom_color = req.body.sole_bottom_color;
+    let sole_top_color = req.body.sole_top_color;
+    
+    let laces_material = req.body.laces_material;
+    let outside_1_material = req.body.outside_1_material;
+    let outside_2_material = req.body.outside_2_material;
+    let outside_3_material = req.body.outside_3_material;
+    let inside_material = req.body.inside_material;
+    let sole_bottom_material = req.body.sole_bottom_material;
+    let sole_top_material = req.body.sole_top_material;
+
     let status = req.body.status;
     let user = req.body.user;
     let size = req.body.size;
     let price = req.body.price;
 
 
-    s.laces = laces;
-    s.outside_1 = outside_1;
-    s.outside_2 = outside_2;
-    s.outside_3 = outside_3;
-    s.inside = inside;
-    s.sole_bottom = sole_bottom;
-    s.sole_top = sole_top;
+    s.laces_color = laces_color;
+    s.outside_1_color = outside_1_color;
+    s.outside_2_color = outside_2_color;
+    s.outside_3_color = outside_3_color;
+    s.inside_color = inside_color;
+    s.sole_bottom_color = sole_bottom_color;
+    s.sole_top_color = sole_top_color;
+
+    s.laces_material = laces_material;
+    s.outside_1_material = outside_1_material;
+    s.outside_2_material = outside_2_material;
+    s.outside_3_material = outside_3_material;
+    s.inside_material = inside_material;
+    s.sole_bottom_material = sole_bottom_material;
+    s.sole_top_material = sole_top_material;
+
     s.status = status;
     s.user = user;
     s.size = size;
@@ -38,13 +56,22 @@ const create = async (req, res) => {
         status: s.status,
         message: "shoe created successfully",
         data:[{
-            laces: s.laces,
-            outside_1: s.outside_1,
-            outside_2: s.outside_2,
-            outside_3: s.outside_3,
-            inside: s.inside,
-            sole_bottom: s.sole_bottom,
-            sole_top: s.sole_top,
+            laces_color: s.laces_color,
+            outside_1_color: s.outside_1_color,
+            outside_2_color: s.outside_2_color,
+            outside_3_color: s.outside_3_color,
+            inside_color: s.inside_color,
+            sole_bottom_color: s.sole_bottom_color,
+            sole_top_color: s.sole_top_color,
+
+            laces_material: s.laces_material,
+            outside_1_material: s.outside_1_material,
+            outside_2_material: s.outside_2_material,
+            outside_3_material: s.outside_3_material,
+            inside_material: s.inside_material,
+            sole_bottom_material: s.sole_bottom_material,
+            sole_top_material: s.sole_top_material,
+
             user: s.user,
             size: s.size,
             price: s.price,
