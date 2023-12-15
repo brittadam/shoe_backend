@@ -40,18 +40,59 @@ const create = async (req, res) => {
 
 //add put to change password of user
 const update = async (req, res) => {
-    let user = await User.findById(req.params.id);
-    user.password = req.body.password;
+try{
+    let oldPassword = req.body.oldPassword;
+    let newPassword = req.body.newPassword;
 
-    //hash password
-    user.password = await bcrypt.hash(user.password, salt);
-    
-    await user.save();
+    //validate inputs
+    if(!oldPassword || !newPassword){
+        res.json({
+            status: "error",
+            message: "old password and new password are required",
+        });
+        return;
+    }
+
+    //find user by id
+    let user = await User.findById(req.params.id);
+
+
+    //check if oldpassword matches using bcrypt compare
+    let match = await bcrypt.compare(oldPassword, user.password);
+
+    if(!match){
+        res.json({
+            status: "error",
+            message: "old password does not match",
+        });
+        return;
+    }
+
+
+    //if match, hash new password
+    let updatedPassword = await bcrypt.hash(newPassword, salt);
+
+    //update user password
+
+    await User.updateOne({_id: req.params.id}, {password: updatedPassword});
+
+    //send response
     res.json({
         status: "success",
-        message: "user updated successfully",
-        data: user
+        message: "password updated successfully",
     });
+}
+catch{
+    res.json({
+        status: "error",
+        message: "password not updated",
+    });
+
+}
+
+
+
+    
 }
 //make login post request
 const login = async (req, res) => {
