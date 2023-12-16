@@ -4,7 +4,7 @@ module.exports.go = (primus) => {
         //   console.log("connection 😁");
           //check if data is received, then console log
           spark.on("data", (data) => {
-              console.log(data);
+              // console.log(data);
   
               //send data back to all client
                //all
@@ -14,7 +14,11 @@ module.exports.go = (primus) => {
                 console.log("yuuuuuuuuu");
                 primus.write( data );
               }
-              
+              if (data.action === "status") {
+                console.log("jaaaaaaaa");
+                console.log(data);
+                primus.write( data );
+              }
           });
       });
   };
