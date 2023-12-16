@@ -10,6 +10,6 @@ router.post("/", createShoe.create);
 router.get("/", createShoe.get);
 router.delete("/:id", createShoe.remove);
 router.get("/:id", createShoe.getById);
-router.put("/:id", createShoe.update);
+router.patch("/:id", createShoe.update);
 
 module.exports = router;
