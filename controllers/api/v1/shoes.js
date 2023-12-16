@@ -75,6 +75,7 @@ const create = async (req, res) => {
             user: s.user,
             size: s.size,
             price: s.price,
+            id: s._id,
         }]
     });
 }
