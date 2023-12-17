@@ -1,7 +1,5 @@
-//reaquire shoe model
 const Shoe = require("../../../models/Shoe");
 
-//make post request to create a shoe
 const create = async (req, res) => {
     console.log(req.body);
     console.log(req.body.laces);
@@ -28,7 +26,6 @@ const create = async (req, res) => {
     let size = req.body.size;
     let price = req.body.price;
 
-
     s.laces_color = laces_color;
     s.outside_1_color = outside_1_color;
     s.outside_2_color = outside_2_color;
@@ -50,6 +47,11 @@ const create = async (req, res) => {
     s.size = size;
     s.price = price;
 
+    // Aanpassing om de datum te formatteren naar "YYYY-MM-DD"
+    let date = new Date();
+    date.setHours(0, 0, 0, 0);
+    let formattedDate = date.toISOString().split('T')[0];
+    s.date = formattedDate;
 
     await s.save();
     res.json({
@@ -76,41 +78,54 @@ const create = async (req, res) => {
             size: s.size,
             price: s.price,
             id: s._id,
+            date: s.date,
         }]
     });
 }
 
 const get = async (req, res) => {
-    let shoes = await Shoe.find();
+    const date = req.query.date;
+    const dateQuery = {};
+
+    if (date) {
+        dateQuery.date = new Date(date);
+    }
+
+    let shoes = await Shoe.find(dateQuery);
+
+    if (shoes.length === 0) {
+        return res.status(404).json({
+            status: "error",
+            message: "No shoes found on the specified date."
+        });
+    }
+
     res.json({
         status: "success",
-        message: "shoes retrieved successfully",
+        message: "Shoes retrieved successfully",
         data: shoes
     });
 }
-//get by id
+
 const getById = async (req, res) => {
     let shoe = await Shoe.findById(req.params.id);
     res.json({
         status: "success",
-        message: "shoe retrieved successfully",
+        message: "Shoe retrieved successfully",
         data: shoe
     });
 }
 
-
-//delete a shoe by id
 const remove = async (req, res) => {
     let id = req.params.id;
     await Shoe.deleteOne({_id: id});
     res.json({
         status: "success",
-        message: "shoe deleted successfully",
+        message: "Shoe deleted successfully",
         data: null
     });
 }
 
-//put request to update a shoe
 const update = async (req, res) => {
     let id = req.params.id;
     let s = await Shoe.findById(id);
@@ -118,15 +133,13 @@ const update = async (req, res) => {
     await s.save();
     res.json({
         status: "success",
-        message: "shoe updated successfully",
+        message: "Shoe updated successfully",
         data: s
     });
 }
-
 
 module.exports.create = create;
 module.exports.get = get;
 module.exports.remove = remove;
 module.exports.getById = getById;
 module.exports.update = update;
-
