@@ -93,6 +93,12 @@ const ShoeSchema = new Schema({
         type: String,
         required: false,
     },
+    //add date
+    date: {
+        type: Date,
+        default: Date.now,
+        required: false,
+    },
 });
 
 // export the model to use it in index.js
