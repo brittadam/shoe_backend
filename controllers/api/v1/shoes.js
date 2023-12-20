@@ -1,8 +1,6 @@
 const Shoe = require("../../../models/Shoe");
 
 const create = async (req, res) => {
-    console.log(req.body);
-    console.log(req.body.laces);
     
     let s = new Shoe();
     let laces_color = req.body.laces_color;

@@ -16,9 +16,6 @@ app.use(express.json());
 // connect to mongodb
 mongoose.connect(process.env.MONGODB);
 
-// console log .env MONGODB
-console.log(process.env.MONGODB);
-
 // check if connection works
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

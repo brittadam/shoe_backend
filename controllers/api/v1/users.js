@@ -6,8 +6,6 @@ const salt = 12;
 
 //make post request to create a user
 const create = async (req, res) => {
-    console.log(req.body);
-    console.log(req.body.username);
     
     let u = new User();
     let username = req.body.username;
@@ -97,7 +95,6 @@ catch{
 //make login post request
 const login = async (req, res) => {
     let user = await User.findOne({email: req.body.email});
-    console.log(req.body.email);
     if(user){
         let match = await bcrypt.compare(req.body.password, user.password);
         if(match){
